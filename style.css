@@ -1,0 +1,9 @@
+* {
+  outline: 1px dotted orange;
+}
+
+img, li {
+  width: 300px;
+  padding: 50px;
+  border: 1px solid black;
+}
