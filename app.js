@@ -50,14 +50,14 @@ function randomNumber() {
 }
 console.log(randomNumber());
 
-function checkDupe(array, value){
-  for (var i = 0; i < allItems.length; i++) {
-    if (value === array) {
-      return false;
-    }
-  }
-  return true;
-}
+// function checkDupe(array, value){
+//   for (var i = 0; i < allItems.length; i++) {
+//     if (value === array) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
 function renderItem() {
   var current = [];
