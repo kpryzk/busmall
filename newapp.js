@@ -3,8 +3,7 @@
 Items.all = [];
 Items.newArray = [];
 Items.previousArray = [];
-Items.viewed = [];
-Items.timesClicked = 0;
+Items.totalClicks = 0;
 Items.pictures = document.getElementById('pictures');
 Items.pictures.addEventListener('click', handleClick);
 
@@ -38,24 +37,6 @@ new Items('usb', 'img/usb.gif');
 new Items('watercan', 'img/water-can.jpg');
 new Items('wineglass', 'img/wine-glass.jpg');
 
-// function randomNumber() {
-//   return
-// }
-
-// function getImage() {
-//   Items.newArray = [];
-//   while (Items.newArray.length < 3) {
-//     var randomNumber = Math.floor(Math.random() * Items.all.length);
-//     for (var i = 0; i < Items.newArray.length; i++) {
-//       if (Items.all[randomNumber] != Items.newArray[i] && Items.all[randomNumber] != Items.previousArray[i]) {
-//         Items.newArray.push(Items.all[randomNumber]);
-//         console.log(Items.all[randomNumber].name);
-//       }
-//     }
-//   }
-//   Items.previousArray = Items.newArray;
-// }
-
 function checkDupes() {
   do {
     var num1 = Math.floor(Math.random() * Items.all.length);
@@ -76,7 +57,7 @@ function renderItems() {
     var imgEl = document.createElement('img');
     imgEl.src = Items.all[Items.newArray[i]].path;
     imgEl.id = Items.all[Items.newArray[i]].name;
-    Items.all[i].views++;
+    Items.all[Items.newArray[i]].views++;
     Items.pictures.appendChild(imgEl);
   }
 }
@@ -84,11 +65,28 @@ function renderItems() {
 renderItems();
 
 function handleClick(event){
+  Items.totalClicks += 1;
+  if(Items.totalClicks > 24) {
+    Items.pictures.removeEventListener('click', handleClick);
+    calcConversion();
+  }
   for (var i = 0; i < Items.all.length; i++) {
     if (event.target.id === Items.all[i].name) {
       Items.all[i].clicks++;
       Items.pictures.innerHTML = '';
       renderItems();
+    }
+  }
+}
+
+function calcConversion() {
+  for (var i = 0; i < Items.all.length; i++) {
+    if (Items.all[i].views === 0) {
+      console.log(Items.all[i].name + ' has no views');
+      Items.all[i].conversion = 'NA';
+    } else {
+      Items.all[i].conversion = Items.all[i].clicks / Items.all[i].views;
+      console.log(Items.all[i].conversion);
     }
   }
 }
