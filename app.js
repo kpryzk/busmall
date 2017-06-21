@@ -98,14 +98,14 @@ var chartNames = [];
 var chartConversion = [];
 function chartGarbage() {
   for (var i = 0; i < Items.all[i].length; i++) {
+    chartConversion.push(Items.all[i].Conversion);
     chartNames.push(Items.all[i].name);
-    chartConversion.push(Items.all[i].conversion);
   }
 }
 
 function chartchart(){
-  var ctx = document.getElementById('myChart');
   chartGarbage();
+  var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
