@@ -6,6 +6,7 @@ Items.previousArray = [];
 Items.totalClicks = 0;
 Items.pictures = document.getElementById('pictures');
 Items.pictures.addEventListener('click', handleClick);
+Items.converted = [];
 
 function Items(name, path) {
   this.name = name;
@@ -37,6 +38,16 @@ new Items('usb', 'img/usb.gif');
 new Items('watercan', 'img/water-can.jpg');
 new Items('wineglass', 'img/wine-glass.jpg');
 
+function calcConversion() {
+  for (var i = 0; i < Items.all.length; i++) {
+    if (Items.all[i].views === 0) {
+      Items.all[i].conversion = 'NA';
+    } else {
+      Items.all[i].conversion = ((Items.all[i].clicks / Items.all[i].views) * 100);
+    }
+  }
+}
+
 function checkDupes() {
   do {
     var num1 = Math.floor(Math.random() * Items.all.length);
@@ -66,9 +77,13 @@ renderItems();
 
 function handleClick(event){
   Items.totalClicks += 1;
-  if(Items.totalClicks > 24) {
+  if(Items.totalClicks === 25) {
+    // var buttonEl = document.createElement('button');
+    Items.pictures.innerHTML = '';
+    // Items.pictures.appendChild(buttonEl);
     Items.pictures.removeEventListener('click', handleClick);
     calcConversion();
+    chartchart();
   }
   for (var i = 0; i < Items.all.length; i++) {
     if (event.target.id === Items.all[i].name) {
@@ -79,14 +94,52 @@ function handleClick(event){
   }
 }
 
-function calcConversion() {
-  for (var i = 0; i < Items.all.length; i++) {
-    if (Items.all[i].views === 0) {
-      console.log(Items.all[i].name + ' has no views');
-      Items.all[i].conversion = 'NA';
-    } else {
-      Items.all[i].conversion = Items.all[i].clicks / Items.all[i].views;
-      console.log(Items.all[i].conversion);
-    }
+var chartNames = [];
+var chartConversion = [];
+function chartGarbage() {
+  for (var i = 0; i < Items.all[i].length; i++) {
+    chartNames.push(Items.all[i].name);
+    chartConversion.push(Items.all[i].conversion);
   }
+}
+
+function chartchart(){
+  var ctx = document.getElementById('myChart');
+  chartGarbage();
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: chartNames,
+      datasets: [{
+        label: 'Conversion Rate',
+        data: chartConversion,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
 }

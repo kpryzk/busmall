@@ -2,8 +2,9 @@
   outline: 1px dotted orange;
 }
 
-img, li {
-  width: 300px;
+img {
+  height: 300;
+  width: 250px;
   padding: 50px;
   border: 1px solid black;
 }
