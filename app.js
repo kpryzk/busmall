@@ -98,7 +98,7 @@ var chartNames = [];
 var chartConversion = [];
 function chartGarbage() {
   for (var i = 0; i < Items.all[i].length; i++) {
-    chartConversion.push(Items.all[i].Conversion);
+    chartConversion.push(Items.all[i].conversion);
     chartNames.push(Items.all[i].name);
   }
 }
