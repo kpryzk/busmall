@@ -1,14 +1,14 @@
 'use strict';
 //two arrays that will hold three objects each, comparing with each other to prevent duplication
-var newItems = [];
-var lastItems = [];
+Item.newArray = [];
+Item.previousArray = [];
 //where all items will be initially pushed and pulled from
 var allItems = [];
 //to count how many clicks up to 25
 var loops = 0;
 //which thing they clicked
 var itemClicked = [];
-var container = document.getElementById('photos');
+var pictures = document.getElementById('pictures');
 var itemOne = document.getElementById('itemone');
 var itemTwo = document.getElementById('itemtwo');
 var itemThree = document.getElementById('itemthree');
@@ -46,7 +46,7 @@ var wineglass = new Item('wineglass', 'img/wine-glass.jpg');
 
 
 function randomNumber() {
-  return Math.floor(Math.random() * allItems.length);
+  return Math.floor(Math.random() * Item.all.length);
 }
 console.log(randomNumber());
 
@@ -60,17 +60,13 @@ console.log(randomNumber());
 // }
 
 function renderItem() {
-  var current = [];
-  while (newItems.length < 3) {
-    for (var i = 0; i < allItems.length; i++) {
-      var imgEl = document.createElement('img');
-      imgEl.src = allItems[randomNumber()].path;
-      newItems.push(imgEl.src);
-    }
-    itemOne.appendChild(imgEl);
+  for (var i = 0; i < Item.all.length; i++) {
+    var imgEl = document.createElement('img');
+    imgEl.src = Item.all[randomNumber()].path;
+    Item.all.push(imgEl.src);
   }
+  pictures.appendChild.
 }
-
 renderItem();
 
 function handleClick(event) {
