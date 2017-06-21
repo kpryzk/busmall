@@ -6,6 +6,7 @@ Items.previousArray = [];
 Items.totalClicks = 0;
 Items.pictures = document.getElementById('pictures');
 Items.pictures.addEventListener('click', handleClick);
+Items.title = [];
 Items.converted = [];
 
 function Items(name, path) {
@@ -44,6 +45,8 @@ function calcConversion() {
       Items.all[i].conversion = 'NA';
     } else {
       Items.all[i].conversion = ((Items.all[i].clicks / Items.all[i].views) * 100);
+      Items.converted.push(Items.all[i].conversion);
+      Items.title.push(Items.all[i].name);
     }
   }
 }
@@ -94,14 +97,13 @@ function handleClick(event){
   }
 }
 
-var chartNames = [];
-var chartConversion = [];
 function chartGarbage() {
   for (var i = 0; i < Items.all[i].length; i++) {
-    chartConversion.push(Items.all[i].conversion);
-    chartNames.push(Items.all[i].name);
+    Items.converted.push(Items.all[i].conversion);
+    Items.title.push(Items.all[i].name);
   }
 }
+
 
 function chartchart(){
   chartGarbage();
@@ -109,10 +111,10 @@ function chartchart(){
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: chartNames,
+      labels: Items.title,
       datasets: [{
         label: 'Conversion Rate',
-        data: chartConversion,
+        data: Items.converted,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
