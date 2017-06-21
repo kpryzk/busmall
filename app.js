@@ -18,6 +18,20 @@ function Items(name, path) {
   Items.all.push(this);
 }
 
+function pushThing(otherThing) {
+  localStorage.clear();
+  var otherThingJSON = JSON.stringify(otherThing);
+  localStorage.things = otherThingJSON;
+  }
+
+function pullThing() {
+  var retrievedThing = localStorage.things;
+  var parsedThing = JSON.parse(retrievedThing);
+  for (var i = 0; i < parsedThing.length; i ++) {
+    Items.all[i] = parsedThing[i];
+  }
+}
+
 new Items('bag', 'img/bag.jpg');
 new Items('banana', 'img/banana.jpg');
 new Items('bathroom', 'img/bathroom.jpg');
