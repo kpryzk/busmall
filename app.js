@@ -130,7 +130,7 @@ function chartchart(){
     data: {
       labels: Items.title,
       datasets: [{
-        label: 'Conversion Rate',
+        label: 'Conversion Rate in %',
         data: Items.converted,
         backgroundColor: [
           'rgba(15, 152, 96, 0.6)',
