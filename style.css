@@ -1,11 +1,13 @@
 * {
   font-family: Helvetica, sans-serif;
-
+  /*outline: 1px orange dotted;*/
 }
 
 header {
   background: linear-gradient(#456C95, white);
-  width: 100%;
+  min-width: 101%;
+  margin-top: -10px;
+  margin-left: -10px;
 }
 
 main {
@@ -14,9 +16,8 @@ main {
   margin: 0px auto;
 }
 
-#inner {
+.inner {
   width: 960px;
-  height: 100px;
   display: block;
   margin: 0 auto;
 }
@@ -27,18 +28,21 @@ h1 {
   color: white;
   font-size: 100px;
   letter-spacing: 2px;
-  margin-left: 40px;
+  margin-left: 50px;
 }
 
 #pictures {
   margin-top: 50px;
+  padding: 10px;
   text-align: center;
+  background-color: rgba(165, 199, 39, 0.6);
 }
 
 #pictures img {
   display: inline-block;
   width: 250px;
   height: 250px;
+  border: 10px solid rgba(165, 199, 39, 1);
 }
 
 #chart {
