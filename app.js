@@ -60,7 +60,7 @@ function calcConversion() {
     if (Items.all[i].views === 0) {
       Items.all[i].conversion = 'NA';
     } else {
-      Items.all[i].conversion = ((Items.all[i].clicks / Items.all[i].views) * 100);
+      Items.all[i].conversion = Math.ceil(((Items.all[i].clicks / Items.all[i].views) * 100));
       Items.converted.push(Items.all[i].conversion);
       Items.title.push(Items.all[i].name);
     }
@@ -99,9 +99,9 @@ function handleClick(event){
   Items.totalClicks += 1;
   if(Items.totalClicks === 25) {
     // var buttonEl = document.createElement('button');
-    Items.pictures.innerHTML = '';
     // Items.pictures.appendChild(buttonEl);
     Items.pictures.removeEventListener('click', handleClick);
+    Items.pictures.innerHTML = '';
     calcConversion();
     chartchart();
     pushStorage();
@@ -138,9 +138,45 @@ function chartchart(){
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
           'rgba(255, 159, 64, 0.2)'
         ],
         borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
           'rgba(255,99,132,1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
