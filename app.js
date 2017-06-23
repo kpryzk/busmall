@@ -98,11 +98,9 @@ renderItems();
 function handleClick(event){
   Items.totalClicks += 1;
   if(Items.totalClicks === 25) {
-    // var buttonEl = document.createElement('button');
-    // Items.pictures.appendChild(buttonEl);
+    calcConversion();
     Items.pictures.removeEventListener('click', handleClick);
     Items.pictures.innerHTML = '';
-    calcConversion();
     chartchart();
     pushStorage();
   }
